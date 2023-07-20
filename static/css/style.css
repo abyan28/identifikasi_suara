@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(118, 232, 145);
+}
+h1, h2, h4, h4, h5, h6, p, a, button {
+  font-family: 'Nunito';
+}
+.bg-navbar {
+  background-color: rgb(36, 120, 79);
+}
+
+.navbar a {
+  color: rgb(241, 238, 238) !important;
+}

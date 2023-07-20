@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Identification</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     
+    <!-- Latest compiled and minified Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    
+
+</head>
+<body>
+  <!--<h1>Voice Identification</h1>-->
+  
+  <nav class="navbar navbar-expand-lg navbar-light bg-navbar mb-1 py-2 shadow-sm">
+    <div class="container">
+      <a role="button" name="webName" class="navbar-brand" href="/">VoiceID</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0 navbar-nav-scroll" style="max-height: 100px;">
+          <li class="nav-item active">
+          <a role="button" name="homeButton" class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a role="navbar" name="loginButton" class="nav-link" href="{{url_for('login')}}" target="_blank">Login</a>
+        </li>
+        </ul>
+      </div>
+    </div>
+</nav>
+
+<!--------------------- -->
+<div class='container'>
+  <div class="row mt-5 justify-content-center">
+    <div class="col col-sm-6">
+      <div class="card w-100 mx-auto shadow-sm" style="width: 18rem;border:none;">
+        <!--<img src="..." class="card-img-top" alt="..."> -->
+        <canvas class="visualizer"></canvas>
+        <div class="card-body">
+          <h5 class="card-title text-center">Deteksi Suara Menggunakan CNN</h5>
+          <!--<p class="card-text">Recorder</p>-->
+          {% if result!=1 %}
+          <div id="controls" class="text-center">
+            <button id="recordButton" class="btn btn-success" style="margin: auto;width: 40%;"> <i class="fas fa-microphone"></i> Record</button>
+            <button id="stopButton" class="btn btn-danger" style="margin: auto;width: 40%;" disabled><i class="fas fa-stop"></i> Stop</button>
+          </div>
+          {% endif %}
+          <hr>
+          {% if result==1 %}
+          <div class="text-center">
+            <p><strong>Hasil Identifikasi:</strong></p>
+            <div id="result">Suara ini<h6>{{ probabilitas }} adalah suara {{ output }}</h6></div>
+              <button onclick="window.location.href='/'" name="backButton" class="btn btn-primary" style="margin: auto;width: 20%;"><i class="fa fa-caret-left"></i> Back</button>
+          </div>
+          {% endif %}
+          {% if result!=1 %}
+          <div class="text-center">
+            <div id="formats">Silahkan Memulai Perekaman Suara...</div><div id="bufferr"><img src="/static/buffer.gif"  width="40" height="40"></div>
+            <p><strong>Suara:</strong></p>
+          </div>
+          <div id="recordingsList" style="list-style:decimal;"></div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------------- -->
+
+<!--- -->
+<div class="row">
+    <div class="w-50 mx-auto"></div>
+</div>
+<!-- -->
+
+
+</div>
+<!-- inserting these scripts at the end to be able to use all the elements in the DOM -->
+<script src="/static/js/recorder.js"></script>
+<script src="/static/js/app.js"></script>
+<script>document.getElementById("bufferr").style.display = "none";</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
